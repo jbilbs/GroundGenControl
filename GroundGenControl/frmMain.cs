@@ -71,9 +71,9 @@ namespace GroundGenControl
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Label lblBurning;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.MainMenu mainMenu1;
-		private System.Windows.Forms.MenuItem menuItem1;
-		private System.Windows.Forms.MenuItem menuItem2;
+		private System.Windows.Forms.MenuStrip mainMenu1;
+		private System.Windows.Forms.ToolStripMenuItem menuItem1;
+		private System.Windows.Forms.ToolStripMenuItem menuItem2;
 		private System.Windows.Forms.ListView lvStatus;
 		private System.Windows.Forms.GroupBox groupBox2;
 		private System.Windows.Forms.Button btnSyncClock;
@@ -92,7 +92,7 @@ namespace GroundGenControl
 		private System.Windows.Forms.PictureBox pictureBox1;
 		private System.Windows.Forms.Button btnLogCleared;
         private System.Windows.Forms.ListView lvErrorLog;
-		private System.Windows.Forms.MenuItem menuItem5;
+		private System.Windows.Forms.ToolStripMenuItem menuItem5;
 		private System.Windows.Forms.PictureBox pictBattery;
 		private System.Windows.Forms.PictureBox pictPurge;
 		private System.Windows.Forms.PictureBox pictSolution;
@@ -104,7 +104,7 @@ namespace GroundGenControl
 		private System.Windows.Forms.PictureBox pictureBox4;
 		private System.Windows.Forms.PictureBox pictureBox5;
 		private System.Windows.Forms.LinkLabel lnkWMI;
-		private System.Windows.Forms.MenuItem mnuRemoteSiteSetup;
+		private System.Windows.Forms.ToolStripMenuItem mnuRemoteSiteSetup;
 		private System.ComponentModel.IContainer components;
 		private System.Windows.Forms.ComboBox cbConnectTo;
 		private ShapeControl.ShapeControl shapeConnected;
@@ -161,7 +161,7 @@ namespace GroundGenControl
 		GlobalConfiguration				_globalConfiguration = GlobalConfiguration.instance;
 		private int						_responsesReceived = 0;
 		private System.Windows.Forms.ProgressBar _progressReceive;
-		private System.Windows.Forms.MenuItem menuItemAbout;
+		private System.Windows.Forms.ToolStripMenuItem menuItemAbout;
 		private ShapeControl.ShapeControl shapeNozzleLine1;
 		private ShapeControl.ShapeControl shapeNozzleLine2;
 		private ShapeControl.ShapeControl shapeNozzleValveOutline;
@@ -171,7 +171,7 @@ namespace GroundGenControl
 		private	System.DateTime			_seedStartTime		= System.DateTime.MinValue;
 		private System.DateTime			_lastResetTime		= System.DateTime.MinValue;
 		private System.Windows.Forms.TextBox txtCommandRemaining;
-		private System.Windows.Forms.MenuItem menuVPNSetup;
+		private System.Windows.Forms.ToolStripMenuItem menuVPNSetup;
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.Label logFileName;
 
@@ -181,9 +181,9 @@ namespace GroundGenControl
         private GroundGenControl.Logging.WeatherLog _weatherLog = new GroundGenControl.Logging.WeatherLog();
 
 		private System.Windows.Forms.Button btnUpdateWx;
-		private System.Windows.Forms.MenuItem menuConfiguration;
+		private System.Windows.Forms.ToolStripMenuItem menuConfiguration;
 		private System.Windows.Forms.Timer timerKeepAlive;
-		private System.Windows.Forms.MenuItem menuAlertSetup;
+		private System.Windows.Forms.ToolStripMenuItem menuAlertSetup;
 		private System.Windows.Forms.Label lblPressure;
 		private System.Windows.Forms.Label lblPressureStatic;
         private ListView lvwWeatherLog;
@@ -191,7 +191,7 @@ namespace GroundGenControl
         private Button btnWeatherFolder;
         private Label lblWeatherLog;
         private Label label6;
-        private MenuItem mnuSkywaveAccount;
+        private System.Windows.Forms.ToolStripMenuItem mnuSkywaveAccount;
         private bool					_connected			=	false;
 
         //  Delegate for obtaining selected site through thread call
@@ -468,7 +468,7 @@ namespace GroundGenControl
 
 			lvStatus.Items[StatusListIndexes.SEED_STATUS].SubItems[DATA_COLULMN].Text			= status.seedingStatusString;
 			//	Seed timer set in timer function
-			lvStatus.Items[StatusListIndexes.FLAME_TEMP].SubItems[DATA_COLULMN].Text			= String.Format("{0:0.0} °F",status.flameTemp);
+			lvStatus.Items[StatusListIndexes.FLAME_TEMP].SubItems[DATA_COLULMN].Text			= String.Format("{0:0.0} ï¿½F",status.flameTemp);
 			lvStatus.Items[StatusListIndexes.FLOW_METER].SubItems[DATA_COLULMN].Text			= String.Format("{0:0.00} GPH",status.flowMeter);
 			lvStatus.Items[StatusListIndexes.PRESSURE].SubItems[DATA_COLULMN].Text				= String.Format("{0:0.0} PSI",status.pressurePSI);
 			lvStatus.Items[StatusListIndexes.PROPANE_RELAY].SubItems[DATA_COLULMN].Text			= status.burnerStateString;
@@ -673,7 +673,7 @@ namespace GroundGenControl
 
 				lblFlowMeter.Text = String.Format(" GPH",status.flowMeter);
 				lblPressure.Text = String.Format(" PSI",status.pressurePSI);
-				lblFlameTemp.Text = String.Format(" °F",status.flameTemp);
+				lblFlameTemp.Text = String.Format(" ï¿½F",status.flameTemp);
 
 				pictBurning.Visible = false;
 				lblNotBurning.Visible = true;
@@ -700,7 +700,7 @@ namespace GroundGenControl
 			//	Pressure
 			lblPressure.Text = String.Format("{0:0.0} PSI",status.pressurePSI);
 			//	Flame temperature
-			lblFlameTemp.Text = String.Format("{0:0.0} °F",status.flameTemp);
+			lblFlameTemp.Text = String.Format("{0:0.0} ï¿½F",status.flameTemp);
 
 
 			//	Set burning state
@@ -748,7 +748,7 @@ namespace GroundGenControl
             lvwWeatherLog.Columns.Add(@"Time", 120, HorizontalAlignment.Right);
             lvwWeatherLog.Columns.Add(@"Wind Dir (Degrees)", 120, HorizontalAlignment.Right);
             lvwWeatherLog.Columns.Add(@"Wind Speed (m/s)", 120, HorizontalAlignment.Right);
-            lvwWeatherLog.Columns.Add(@"Temperature (°C)", 120, HorizontalAlignment.Right);
+            lvwWeatherLog.Columns.Add(@"Temperature (ï¿½C)", 120, HorizontalAlignment.Right);
             lvwWeatherLog.Columns.Add(@"Pressure (mmHg)", 120, HorizontalAlignment.Right);
             lvwWeatherLog.Columns.Add(@"Rel. Humidity (%)", 120, HorizontalAlignment.Right);
             lvwWeatherLog.Columns.Add(@"Heater State", -2, HorizontalAlignment.Right);
@@ -864,16 +864,16 @@ namespace GroundGenControl
             this.shapeConnected = new ShapeControl.ShapeControl();
             this._progressReceive = new System.Windows.Forms.ProgressBar();
             this.txtCommandRemaining = new System.Windows.Forms.TextBox();
-            this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
-            this.menuItem1 = new System.Windows.Forms.MenuItem();
-            this.menuItem2 = new System.Windows.Forms.MenuItem();
-            this.menuConfiguration = new System.Windows.Forms.MenuItem();
-            this.mnuSkywaveAccount = new System.Windows.Forms.MenuItem();
-            this.mnuRemoteSiteSetup = new System.Windows.Forms.MenuItem();
-            this.menuVPNSetup = new System.Windows.Forms.MenuItem();
-            this.menuAlertSetup = new System.Windows.Forms.MenuItem();
-            this.menuItem5 = new System.Windows.Forms.MenuItem();
-            this.menuItemAbout = new System.Windows.Forms.MenuItem();
+            this.mainMenu1 = new System.Windows.Forms.MenuStrip();
+            this.menuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuConfiguration = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuSkywaveAccount = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuRemoteSiteSetup = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuVPNSetup = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuAlertSetup = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItem5 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.lvStatus = new System.Windows.Forms.ListView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtMasterTime = new System.Windows.Forms.TextBox();
@@ -1056,7 +1056,7 @@ namespace GroundGenControl
             this.lblFlameTemp.Name = "lblFlameTemp";
             this.lblFlameTemp.Size = new System.Drawing.Size(48, 16);
             this.lblFlameTemp.TabIndex = 52;
-            this.lblFlameTemp.Text = "-.- °F";
+            this.lblFlameTemp.Text = "-.- ï¿½F";
             this.lblFlameTemp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // shapePurgeOn
@@ -1902,28 +1902,25 @@ namespace GroundGenControl
             // 
             // mainMenu1
             // 
-            this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mainMenu1.Items.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
             this.menuItem1,
             this.menuConfiguration,
             this.menuItem5});
             // 
             // menuItem1
             // 
-            this.menuItem1.Index = 0;
-            this.menuItem1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
             this.menuItem2});
             this.menuItem1.Text = "File";
             // 
             // menuItem2
             // 
-            this.menuItem2.Index = 0;
             this.menuItem2.Text = "Exit";
             this.menuItem2.Click += new System.EventHandler(this.menuItem2_Click);
             // 
             // menuConfiguration
             // 
-            this.menuConfiguration.Index = 1;
-            this.menuConfiguration.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuConfiguration.DropDownItems.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
             this.mnuSkywaveAccount,
             this.mnuRemoteSiteSetup,
             this.menuVPNSetup,
@@ -1932,39 +1929,33 @@ namespace GroundGenControl
             // 
             // mnuSkywaveAccount
             // 
-            this.mnuSkywaveAccount.Index = 0;
             this.mnuSkywaveAccount.Text = "Skywave Account...";
             this.mnuSkywaveAccount.Click += new System.EventHandler(this.mnuSkywaveAccount_Click);
             // 
             // mnuRemoteSiteSetup
             // 
-            this.mnuRemoteSiteSetup.Index = 1;
             this.mnuRemoteSiteSetup.Text = "Remote Site Setup...";
             this.mnuRemoteSiteSetup.Click += new System.EventHandler(this.mnuRemoteSiteSetup_Click);
             // 
             // menuVPNSetup
             // 
-            this.menuVPNSetup.Index = 2;
             this.menuVPNSetup.Text = "VPN Setup...";
             this.menuVPNSetup.Visible = false;
             this.menuVPNSetup.Click += new System.EventHandler(this.menu_VPNSetupClick);
             // 
             // menuAlertSetup
             // 
-            this.menuAlertSetup.Index = 3;
             this.menuAlertSetup.Text = "Alert Setup...";
             this.menuAlertSetup.Click += new System.EventHandler(this.menuAlertSetup_Click);
             // 
             // menuItem5
             // 
-            this.menuItem5.Index = 2;
-            this.menuItem5.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.menuItem5.DropDownItems.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
             this.menuItemAbout});
             this.menuItem5.Text = "Help";
             // 
             // menuItemAbout
             // 
-            this.menuItemAbout.Index = 0;
             this.menuItemAbout.Text = "About WMI Ground Control Interface...";
             this.menuItemAbout.Click += new System.EventHandler(this.menuItemAbout_Click);
             // 
@@ -2197,7 +2188,7 @@ namespace GroundGenControl
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Menu = this.mainMenu1;
+            this.MainMenuStrip = this.mainMenu1;
             this.Name = "frmMain";
             this.Text = "WMI Remote Ground Generator Control Interface ";
             this.Closing += new System.ComponentModel.CancelEventHandler(this.frmMain_Close);

@@ -5,8 +5,6 @@ using System.Text;
 using System.Threading;
 using System.Globalization;
 using System.Net;
-using System.ServiceModel;
-using System.ServiceModel.Channels;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using SkyWave;
@@ -36,18 +34,8 @@ namespace GroundGenControl.SkyWave
         {
 
             string gatewayURL = SERVICE_URL;
-            // prevent error due to lack of authentication certificate
-            CustomBinding customBinding;
-
             ServicePointManager.ServerCertificateValidationCallback = TrustAllCertificatesCallback;
-            var webHttpBinding = new WebHttpBinding(WebHttpSecurityMode.Transport);
-            webHttpBinding.Security.Transport.ClientCredentialType = HttpClientCredentialType.Windows;
-            customBinding = new CustomBinding(webHttpBinding);
-
-            var endpointAddress = new EndpointAddress(new Uri(gatewayURL));
-            _gatewayInterface = new MessageService_JSON(customBinding, endpointAddress);
-
-            _startUTC = InfoUTC();
+            _gatewayInterface = new MessageService_JSON(gatewayURL);
 
             //  Retrieve error information for detailed display of error information to users 
             GetErrorInfos();

@@ -4,7 +4,6 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Text;
-using System.Runtime.Remoting.Messaging;
 using GroundGenControl.Configuration;
 using GroundGenControl.SkyWave;
 

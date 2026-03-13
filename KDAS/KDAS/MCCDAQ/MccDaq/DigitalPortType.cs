@@ -1,0 +1,40 @@
+namespace MccDaq
+{
+	public enum DigitalPortType
+	{
+		AuxPort = 1,
+		FirstPortA = 10,
+		FirstPortB,
+		FirstPortC,
+		FirstPortCL = 12,
+		FirstPortCH,
+		SecondPortA,
+		SecondPortB,
+		SecondPortCL,
+		SecondPortCH,
+		ThirdPortA,
+		ThirdPortB,
+		ThirdPortCL,
+		ThirdPortCH,
+		FourthPortA,
+		FourthPortB,
+		FourthPortCL,
+		FourthPortCH,
+		FifthPortA,
+		FifthPortB,
+		FifthPortCL,
+		FifthPortCH,
+		SixthPortA,
+		SixthPortB,
+		SixthPortCL,
+		SixthPortCH,
+		SeventhPortA,
+		SeventhPortB,
+		SeventhPortCL,
+		SeventhPortCH,
+		EighthPortA,
+		EighthPortB,
+		EighthPortCL,
+		EighthPortCH
+	}
+}

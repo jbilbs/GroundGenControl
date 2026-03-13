@@ -1,0 +1,6 @@
+Power 		Pin 10
+Ground 		Pin 11
+Wx 		Transmit 9
+Wx 		RXD 8
+Wx 		Pin 7
+

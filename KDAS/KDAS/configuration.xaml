@@ -1,0 +1,202 @@
+<Window x:Class="KDAS.Configuration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Loaded="Window_Loaded" Title="Configuration" WindowStyle="ThreeDBorderWindow"
+        WindowStartupLocation="Manual" Topmost="true" BorderThickness="6" BorderBrush="Black"
+        ResizeMode="CanResize" WindowState="Normal" HorizontalAlignment="Left" VerticalAlignment="Top"
+        SizeToContent="WidthAndHeight">
+  <Grid Height="Auto" VerticalAlignment="Top" Width="Auto" HorizontalAlignment="Left">
+    <TabControl Name="tabControl1" Height="Auto" HorizontalAlignment="Left" Margin="12,12,0,0"
+                VerticalAlignment="Top" Width="Auto" HorizontalContentAlignment="Center">
+      <TabItem Header="General">
+        <Grid Height="191" Width="530" HorizontalAlignment="Left" VerticalAlignment="Top">
+          <GroupBox Name="groupBox6" Header="TX Delay" Height="69" HorizontalAlignment="Left" Margin="261,87,0,0"
+                    VerticalAlignment="Top" Width="236">
+            <Grid>
+              <TextBox Name="txbDelay" FontSize="13" FontWeight="Bold" Height="25" HorizontalAlignment="Right"
+                       Margin="0,13,133,0" VerticalAlignment="Top" Width="38"/>
+              <Label Name="label23" Content="Delay:" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="1,10,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <Label Name="label24" Content="(sec)" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="97,10,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <Button Click="btnDelayUpdate_Click" Name="btnDelayUpdate" Content="Update" FontSize="12" Height="23"
+                      HorizontalAlignment="Left" Margin="147,14,0,0" VerticalAlignment="Top" Width="65"/>
+            </Grid>
+          </GroupBox>
+          <GroupBox Name="groupBox5" Header="Tail Number" Height="133" Width="234" Margin="21,23,0,0"
+                    HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Grid Height="Auto" Width="Auto">
+              <TextBox Name="txbCurTail" FontSize="13" FontWeight="Bold" Height="25" HorizontalAlignment="Left"
+                       Margin="97,8,0,0" VerticalAlignment="Top" Width="115" IsReadOnly="true"/>
+              <Label Name="label21" Content="Current Tail:" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="7,8,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <Button Click="btnTailUpdate_Click" Name="btnTailUpdate" Content="Update" FontSize="12" Height="23"
+                      HorizontalAlignment="Left" Margin="78,81,0,0" VerticalAlignment="Top" Width="65"/>
+              <TextBox Name="txbNewTail" FontSize="13" FontWeight="Bold" Height="25" HorizontalAlignment="Left"
+                       Margin="97,44,0,0" VerticalAlignment="Top" Width="115"/>
+              <Label Name="label22" Content="New Tail:" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="26,44,0,0" VerticalAlignment="Top" Width="Auto"/>
+            </Grid>
+          </GroupBox>
+          <GroupBox Name="groupBox3" Header="Shutdown" Height="54" HorizontalAlignment="Left" Margin="261,23,0,0"
+                    VerticalAlignment="Top" Width="234">
+            <CheckBox Unchecked="cbAllowShutdown_Unchecked" Checked="cbAllowShutdown_Checked" Name="cbAllowShutdown"
+                      Content="Allow Digital Shutdown" Height="21" FontSize="14" HorizontalContentAlignment="Left"
+                      VerticalContentAlignment="Top"/>
+          </GroupBox>
+        </Grid>
+      </TabItem>
+      <TabItem Name="tabItem1" Header="Analog Inputs">
+        <Grid Height="361" Width="610">
+          <GroupBox Name="groupBox2" Header="Analog Temperature" Height="281" HorizontalAlignment="Left"
+                    Margin="14,11,0,0" VerticalAlignment="Top" Width="283">
+            <Grid Height="auto" Width="auto">
+              <Button Click="btnTempDefault" Name="button1" Content="Default" FontSize="12" Height="23"
+                      HorizontalAlignment="Left" Margin="59,223,0,0" VerticalAlignment="Top" Width="65"/>
+              <Button Click="btnTempUpdate" Name="button2" Content="Update" FontSize="12" Height="23"
+                      HorizontalAlignment="Left" Margin="151,223,0,0" VerticalAlignment="Top" Width="65"/>
+              <TextBox Name="txbMaxVolt" FontSize="13" FontWeight="Bold" Height="25" HorizontalAlignment="Left"
+                       Margin="121,72,0,0" VerticalAlignment="Top" Width="75" HorizontalContentAlignment="Center"
+                       VerticalContentAlignment="Center"/>
+              <Label Name="label7" Content="Max Voltage:" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="22,68,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <TextBox Name="txbMinVolt" FontSize="13" FontWeight="Bold" Height="25" HorizontalAlignment="Left"
+                       Margin="121,109,0,0" VerticalAlignment="Top" Width="75" HorizontalContentAlignment="Center"
+                       VerticalContentAlignment="Center"/>
+              <Label Name="label6" Content="Min Voltage:" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="26,106,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <TextBox Name="txbMaxTemp" FontSize="13" FontWeight="Bold" Height="25" HorizontalAlignment="Left"
+                       Margin="121,146,0,0" VerticalAlignment="Top" Width="75" HorizontalContentAlignment="Center"
+                       VerticalContentAlignment="Center"/>
+              <Label Name="label8" Content="Max Temp:" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="34,143,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <TextBox Name="txbMinTemp" FontSize="13" FontWeight="Bold" Height="25" HorizontalAlignment="Left"
+                       Margin="121,185,0,0" VerticalAlignment="Top" Width="75" HorizontalContentAlignment="Center"
+                       VerticalContentAlignment="Center"/>
+              <Label Name="label9" Content="Min Temp:" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="37,180,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <TextBox Name="txbTempTrans" FontSize="13" FontWeight="Bold" Height="25" HorizontalAlignment="Right"
+                       Margin="0,34,20,0" VerticalAlignment="Top" Width="234" HorizontalContentAlignment="Center"
+                       VerticalContentAlignment="Center" IsReadOnly="true"/>
+              <Label Name="label10" Content="Temperature Transfer Function:" FontSize="14" FontWeight="Bold"
+                     Height="Auto" HorizontalAlignment="Left" Margin="24,10,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <Label Name="label13" Content="(volts)" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="195,69,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <Label Name="label15" Content="(volts)" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="195,107,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <Label Name="label16" Content="(celcius)" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="195,144,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <Label Name="label17" Content="(celcius)" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="195,181,0,0" VerticalAlignment="Top" Width="Auto"/>
+            </Grid>
+          </GroupBox>
+          <GroupBox Name="groupBox4" Header="Analog Liquid Water" Height="281" HorizontalAlignment="Left"
+                    Margin="314,11,0,0" VerticalAlignment="Top" Width="273">
+            <Grid Height="Auto" Width="Auto">
+              <Button Click="btnLWdefault" Name="button3" Content="Default" FontSize="12" Height="23"
+                      HorizontalAlignment="Left" Margin="52,223,0,0" VerticalAlignment="Top" Width="65"/>
+              <Button Click="btnLWupdate" Name="button4" Content="Update" FontSize="12" Height="23"
+                      HorizontalAlignment="Left" Margin="144,223,0,0" VerticalAlignment="Top" Width="65"/>
+              <TextBox Name="txbLWpressure" FontSize="13" FontWeight="Bold" Height="25" HorizontalAlignment="Left"
+                       HorizontalContentAlignment="Center" Margin="96,185,0,0" VerticalAlignment="Top"
+                       VerticalContentAlignment="Center" Width="75"/>
+              <Label Name="label5" Content="Pressure:" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="22,182,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <TextBox Name="txbLWairTemp" FontSize="13" FontWeight="Bold" Height="25" HorizontalAlignment="Left"
+                       HorizontalContentAlignment="Center" Margin="96,148,0,0" VerticalAlignment="Top"
+                       VerticalContentAlignment="Center" Width="75"/>
+              <Label Name="label11" Content="Air Temp:" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="19,145,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <TextBox Name="txbLWairSpeed" FontSize="13" FontWeight="Bold" Height="25" HorizontalAlignment="Left"
+                       HorizontalContentAlignment="Center" Margin="94,114,0,0" VerticalAlignment="Top"
+                       VerticalContentAlignment="Center" Width="75"/>
+              <Label Name="label12" Content="Air Speed:" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="16,107,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <Label Name="label14" Content="Calibrating Parameters For:" FontSize="14" FontWeight="Bold" Height="Auto"
+                     HorizontalAlignment="Left" Margin="28,10,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <TextBox Name="textBox1" FontSize="13" Text="MDT LWC-100" FontWeight="Bold" Height="25"
+                       HorizontalAlignment="Left" HorizontalContentAlignment="Center" Margin="34,34,0,0"
+                       VerticalAlignment="Top" VerticalContentAlignment="Center" Width="192" IsReadOnly="true"/>
+              <Label Name="label18" Content="(millabars)" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="173,182,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <Label Name="label19" Content="(celcius)" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="173,146,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <Label Name="label20" Content="(m/s)" FontSize="14" FontWeight="Normal" Height="Auto"
+                     HorizontalAlignment="Left" Margin="173,110,0,0" VerticalAlignment="Top" Width="Auto"/>
+              <Label Name="label26" Content="Assumed Conditions:" FontSize="14" FontWeight="Bold" Height="Auto"
+                     HorizontalAlignment="Left" Margin="52,69,0,0" VerticalAlignment="Top" Width="Auto"/>
+            </Grid>
+          </GroupBox>
+          <GroupBox Name="groupBox8" Header="Raw To Volts Manual Calibration" Height="63" HorizontalAlignment="Left"
+                    Margin="20,292,0,0" VerticalAlignment="Top" Width="567">
+            <Grid>
+              <Button Click="btnManualCal_Click" Name="btnManualCal" Content="Update" Height="23"
+                      HorizontalAlignment="Left" Margin="428,11,0,0" VerticalAlignment="Top" Width="75"/>
+              <Slider ValueChanged="sldManualCal_ValueChanged" Name="sldManualCal" Height="23" HorizontalAlignment="Left"
+                      Margin="11,11,0,0" VerticalAlignment="Top" Width="199" Interval="200" Maximum="1" Minimum="-1"
+                      LargeChange="0.1" SmallChange="0.01"/>
+              <TextBox Name="txbManualCal" FontSize="13" FontWeight="Bold" Height="25" HorizontalAlignment="Right"
+                       HorizontalContentAlignment="Center" Margin="0,9,240,0" VerticalAlignment="Top"
+                       VerticalContentAlignment="Center" Width="75" IsReadOnly="true"/>
+            </Grid>
+          </GroupBox>
+        </Grid>
+      </TabItem>
+      <TabItem Header="Comm Ports">
+        <GroupBox Name="groupBox1" Header="Ports" Height="226" Width="329">
+          <Grid Height="Auto" Width="Auto">
+            <ListBox Name="lbGPS" Height="79" HorizontalAlignment="Left" Margin="77,72,0,0" VerticalAlignment="Top"
+                     Width="65" FontSize="13"/>
+            <ListBox Name="lbModem" Height="79" HorizontalAlignment="Left" Margin="151,72,0,0" VerticalAlignment="Top"
+                     Width="65" FontSize="12"/>
+            <Label Name="label1" Content="GPS" Height="27" HorizontalAlignment="Left" Margin="88,6,0,0"
+                   VerticalAlignment="Top" Width="44" FontSize="14" FontWeight="Bold"/>
+            <Label Name="label2" Content="Modem" Height="27" HorizontalAlignment="Left" Margin="152,6,0,0"
+                   VerticalAlignment="Top" Width="64" FontSize="14" FontWeight="Bold"/>
+            <Button Click="btnSetGPS_Click" Name="btnSetGPS" Content="Update" Height="23" HorizontalAlignment="Left"
+                    Margin="77,157,0,0" VerticalAlignment="Top" Width="65" FontSize="12"/>
+            <Button Click="btnSetModem_Click" Name="btnSetModem" Content="UPdate" Height="23"
+                    HorizontalAlignment="Left" Margin="151,157,0,0" VerticalAlignment="Top" Width="65" FontSize="12"/>
+            <TextBox Name="txbGPScurrent" Height="25" HorizontalAlignment="Left" Margin="77,33,0,0"
+                     VerticalAlignment="Top" Width="65" FontSize="13" FontWeight="Bold"/>
+            <TextBox Name="txbMODEMcurrent" Height="25" HorizontalAlignment="Left" Margin="151,33,0,0"
+                     VerticalAlignment="Top" Width="65" FontSize="13" FontWeight="Bold"/>
+            <Label Name="label3" Content="Selected:" FontSize="14" FontWeight="Normal" Height="Auto"
+                   HorizontalAlignment="Left" Margin="6,26,0,0" VerticalAlignment="Top" Width="Auto"/>
+            <Label Name="label4" Content="Avalible:" FontSize="14" FontWeight="Normal" Height="Auto"
+                   HorizontalAlignment="Left" Margin="11,72,0,0" VerticalAlignment="Top" Width="Auto"/>
+            <ListBox Name="lbLCD" FontSize="12" Height="79" HorizontalAlignment="Left" Margin="225,72,0,0"
+                     VerticalAlignment="Top" Width="65"/>
+            <Label Name="label25" Content="LCD" FontSize="14" FontWeight="Bold" Height="29" HorizontalAlignment="Left"
+                   Margin="226,4,0,0" VerticalAlignment="Top" Width="64" HorizontalContentAlignment="Center"/>
+            <Button Click="btnSetLCD_Click" Name="btnSetLCD" Content="Update" FontSize="12" Height="23"
+                    HorizontalAlignment="Left" Margin="225,157,0,0" VerticalAlignment="Top" Width="65"/>
+            <TextBox Name="txbLCDcurrent" FontSize="13" FontWeight="Bold" Height="25" HorizontalAlignment="Left"
+                     Margin="225,33,0,0" VerticalAlignment="Top" Width="65"/>
+          </Grid>
+        </GroupBox>
+      </TabItem>
+      <TabItem Header="USB">
+        <GroupBox Name="groupBox7" Header="Drive Probe" Height="Auto" Width="Auto" VerticalAlignment="Top"
+                  HorizontalAlignment="Left">
+          <Grid Height="238" VerticalAlignment="Top" Width="621">
+            <TextBox Name="txbUSB" Height="173" Margin="6,6,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"
+                     Width="519" IsReadOnly="true" FontSize="12"/>
+            <Button Click="btnUSBupdate_Click" Name="btnUSBupdate" Content="Update" Height="23"
+                    HorizontalAlignment="Left" Margin="532,197,0,0" VerticalAlignment="Top" Width="75"/>
+            <ListBox Name="lbUSB" Height="93" HorizontalAlignment="Left" Margin="551,45,0,0" VerticalAlignment="Top"
+                     Width="36" HorizontalContentAlignment="Center" FontSize="13"/>
+            <TextBox Name="txbCurrentUSB" Height="Auto" HorizontalAlignment="Left" Margin="435,197,0,0"
+                     VerticalAlignment="Top" Width="41" FontSize="13" FontWeight="Bold"/>
+            <Label Name="label27" Content="Avalible:" FontSize="14" FontWeight="Normal" Height="Auto"
+                   HorizontalAlignment="Left" Margin="538,16,0,0" VerticalAlignment="Top" Width="Auto"/>
+            <Label Name="label28" Content="Selected:" FontSize="14" FontWeight="Normal" Height="Auto"
+                   HorizontalAlignment="Left" Margin="364,194,0,0" VerticalAlignment="Top" Width="Auto"/>
+          </Grid>
+        </GroupBox>
+      </TabItem>
+    </TabControl>
+  </Grid>
+</Window>

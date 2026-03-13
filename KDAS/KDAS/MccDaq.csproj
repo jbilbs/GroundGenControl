@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{AD170DB2-E6A1-40F4-B4E2-ACD364E3A096}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <OutputType>Library</OutputType>
+    <AssemblyName>MccDaq</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms">
+      <HintPath>C:\WINDOWS\assembly\GAC_MSIL\System.Windows.Forms\2.0.0.0__b77a5c561934e089\System.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>C:\WINDOWS\assembly\GAC_MSIL\System\2.0.0.0__b77a5c561934e089\System.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MccDaq\BCDMode.cs" />
+    <Compile Include="MccDaq\C8254Mode.cs" />
+    <Compile Include="MccDaq\C8536OutputControl.cs" />
+    <Compile Include="MccDaq\C8536TriggerType.cs" />
+    <Compile Include="MccDaq\C9513OutputControl.cs" />
+    <Compile Include="MccDaq\CallbackFunction.cs" />
+    <Compile Include="MccDaq\cBoardConfig.cs" />
+    <Compile Include="MccDaq\CbwApi.cs" />
+    <Compile Include="MccDaq\cCtrConfig.cs" />
+    <Compile Include="MccDaq\cDioConfig.cs" />
+    <Compile Include="MccDaq\cExpansionConfig.cs" />
+    <Compile Include="MccDaq\ChannelType.cs" />
+    <Compile Include="MccDaq\CompareValue.cs" />
+    <Compile Include="MccDaq\ConnectionPin.cs" />
+    <Compile Include="MccDaq\CountDirection.cs" />
+    <Compile Include="MccDaq\CountEdge.cs" />
+    <Compile Include="MccDaq\CounterControl.cs" />
+    <Compile Include="MccDaq\CounterDebounceMode.cs" />
+    <Compile Include="MccDaq\CounterDebounceTime.cs" />
+    <Compile Include="MccDaq\CounterEdgeDetection.cs" />
+    <Compile Include="MccDaq\CounterMode.cs" />
+    <Compile Include="MccDaq\CounterRegister.cs" />
+    <Compile Include="MccDaq\CounterSource.cs" />
+    <Compile Include="MccDaq\CounterTickSize.cs" />
+    <Compile Include="MccDaq\CountingMode.cs" />
+    <Compile Include="MccDaq\CtrlOutput.cs" />
+    <Compile Include="MccDaq\DACUpdate.cs" />
+    <Compile Include="MccDaq\DataEncoding.cs" />
+    <Compile Include="MccDaq\DataLogger.cs" />
+    <Compile Include="MccDaq\DigitalLogicState.cs" />
+    <Compile Include="MccDaq\DigitalPortDirection.cs" />
+    <Compile Include="MccDaq\DigitalPortType.cs" />
+    <Compile Include="MccDaq\DTMode.cs" />
+    <Compile Include="MccDaq\ErrorHandling.cs" />
+    <Compile Include="MccDaq\ErrorInfo.cs" />
+    <Compile Include="MccDaq\ErrorReporting.cs" />
+    <Compile Include="MccDaq\EventCallback.cs" />
+    <Compile Include="MccDaq\EventParameter.cs" />
+    <Compile Include="MccDaq\EventType.cs" />
+    <Compile Include="MccDaq\FieldDelimiter.cs" />
+    <Compile Include="MccDaq\FileType.cs" />
+    <Compile Include="MccDaq\FlagPins.cs" />
+    <Compile Include="MccDaq\FunctionType.cs" />
+    <Compile Include="MccDaq\GateControl.cs" />
+    <Compile Include="MccDaq\GetFileOptions.cs" />
+    <Compile Include="MccDaq\GlobalConfig.cs" />
+    <Compile Include="MccDaq\IdleState.cs" />
+    <Compile Include="MccDaq\IndexMode.cs" />
+    <Compile Include="MccDaq\InfoType.cs" />
+    <Compile Include="MccDaq\LoggerUnits.cs" />
+    <Compile Include="MccDaq\MccBoard.cs" />
+    <Compile Include="MccDaq\MccService.cs" />
+    <Compile Include="MccDaq\OptionState.cs" />
+    <Compile Include="MccDaq\PrimaryBitConfigPortType.cs" />
+    <Compile Include="MccDaq\PrimaryDigitalPortType.cs" />
+    <Compile Include="MccDaq\PulseOutOptions.cs" />
+    <Compile Include="MccDaq\Quadrature.cs" />
+    <Compile Include="MccDaq\Range.cs" />
+    <Compile Include="MccDaq\RecycleMode.cs" />
+    <Compile Include="MccDaq\Reload.cs" />
+    <Compile Include="MccDaq\ScanOptions.cs" />
+    <Compile Include="MccDaq\SetpointFlag.cs" />
+    <Compile Include="MccDaq\SetpointOutput.cs" />
+    <Compile Include="MccDaq\SignalDirection.cs" />
+    <Compile Include="MccDaq\SignalPolarity.cs" />
+    <Compile Include="MccDaq\SignalSource.cs" />
+    <Compile Include="MccDaq\SignalType.cs" />
+    <Compile Include="MccDaq\SoftwareTriggerType.cs" />
+    <Compile Include="MccDaq\StatusBits.cs" />
+    <Compile Include="MccDaq\TEDSReadOptions.cs" />
+    <Compile Include="MccDaq\TempScale.cs" />
+    <Compile Include="MccDaq\ThermocoupleOptions.cs" />
+    <Compile Include="MccDaq\TimeFormat.cs" />
+    <Compile Include="MccDaq\TimeOfDay.cs" />
+    <Compile Include="MccDaq\TimeZone.cs" />
+    <Compile Include="MccDaq\TriggerEvent.cs" />
+    <Compile Include="MccDaq\TriggerSensitivity.cs" />
+    <Compile Include="MccDaq\TriggerSource.cs" />
+    <Compile Include="MccDaq\TriggerType.cs" />
+    <Compile Include="MccDaq\VInOptions.cs" />
+    <Compile Include="MccDaq\VOutOptions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

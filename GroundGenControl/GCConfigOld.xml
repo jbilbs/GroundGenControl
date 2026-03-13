@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RemoteSites>
+	<site>
+		<description>Atlanta</description>
+		<ip>10.1.1.1</ip>
+		<min>12345</min>
+	</site>
+	<site>
+		<description>New York</description>
+		<ip>10.1.1.1</ip>
+		<min>12345</min>
+	</site>
+</RemoteSites>

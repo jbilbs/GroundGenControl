@@ -1,0 +1,27 @@
+Microsoft Visual Studio Solution File, Format Version 7.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaskedEdit", "MaskedEdit.csproj", "{38169A35-0248-4286-9BFA-F26088511B83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MaskedEditTest", "..\MaskedEditTest\MaskedEditTest.csproj", "{6238D6DF-1782-4DB4-9D18-10DE7FF09A28}"
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		ConfigName.0 = Debug
+		ConfigName.1 = Release
+	EndGlobalSection
+	GlobalSection(ProjectDependencies) = postSolution
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{38169A35-0248-4286-9BFA-F26088511B83}.Debug.ActiveCfg = Debug|.NET
+		{38169A35-0248-4286-9BFA-F26088511B83}.Debug.Build.0 = Debug|.NET
+		{38169A35-0248-4286-9BFA-F26088511B83}.Release.ActiveCfg = Release|.NET
+		{38169A35-0248-4286-9BFA-F26088511B83}.Release.Build.0 = Release|.NET
+		{6238D6DF-1782-4DB4-9D18-10DE7FF09A28}.Debug.ActiveCfg = Debug|.NET
+		{6238D6DF-1782-4DB4-9D18-10DE7FF09A28}.Debug.Build.0 = Debug|.NET
+		{6238D6DF-1782-4DB4-9D18-10DE7FF09A28}.Release.ActiveCfg = Release|.NET
+		{6238D6DF-1782-4DB4-9D18-10DE7FF09A28}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

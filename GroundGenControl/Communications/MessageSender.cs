@@ -84,16 +84,12 @@ namespace GroundGenControl.Communications
             }
             catch (Exception ex)
             {
-
-                ReceiveResult result = new ReceiveResult();
+                SendResult result = new SendResult();
                 result.errorString = ex.Message;
                 result.exceptionState = true;
-
-                //	Call the caller
+                //      Call the caller
                 _callback(result);
                 return;
-
-
             }
 
 

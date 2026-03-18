@@ -32,14 +32,22 @@ namespace GroundGenControl.SkyWave
 
         public MessageTransceiver()
         {
+            try
+            {
+                string gatewayURL = SERVICE_URL;
+                ServicePointManager.ServerCertificateValidationCallback = TrustAllCertificatesCallback;
+                _gatewayInterface = new MessageService_JSON(gatewayURL);
 
-            string gatewayURL = SERVICE_URL;
-            ServicePointManager.ServerCertificateValidationCallback = TrustAllCertificatesCallback;
-            _gatewayInterface = new MessageService_JSON(gatewayURL);
+                _startUTC = InfoUTC();
 
-            //  Retrieve error information for detailed display of error information to users 
-            GetErrorInfos();
-
+                GetErrorInfos();
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(
+                    ex.Message + "\n\nInner: " + ex.InnerException?.Message + "\n\n" + ex.StackTrace,
+                    "MessageTransceiver Init Error");
+            }
         }
 
         public static MessageTransceiver instance
@@ -135,7 +143,7 @@ namespace GroundGenControl.SkyWave
 
             //            string raw64 = Convert.ToBase64String(buildPaylod);
 
-
+            
             fwdMessages.Add(new ForwardMessage { DestinationID = strMobileID,
                                                      UserMessageID = 1,
                                                      RawPayload = buildPayload

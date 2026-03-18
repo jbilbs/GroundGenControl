@@ -11,6 +11,7 @@ using System.Net;
 using System.Text;
 using System.Xml.Serialization;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 namespace SkyWave
 {
@@ -31,6 +32,7 @@ namespace SkyWave
     public class ForwardMessageArray
     {
         [DataMember(Name = "Messages", Order = 0, IsRequired = false)]
+        [Newtonsoft.Json.JsonProperty("Messages")]
         public ForwardMessage[] SubmitMessages = null;
     }
 

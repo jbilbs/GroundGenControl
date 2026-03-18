@@ -5,195 +5,120 @@ using System.Windows.Forms;
 
 namespace ShapeControl
 {
-    /// <summary>
-    /// Defines the shape types available for the ShapeControl.
-    /// </summary>
     public enum ShapeType
     {
         Rectangle,
         Ellipse
     }
 
-    /// <summary>
-    /// A custom WinForms control that draws colored shapes with optional gradient fills.
-    /// Used as status indicators throughout the GroundGenControl UI.
-    /// Replacement for the original ShapeControl.dll dependency.
-    /// </summary>
     public class ShapeControl : Control
     {
-        // ── Private backing fields ────────────────────────────────────────────
-
         private ShapeType _shape = ShapeType.Ellipse;
-        private Color _centerColor = Color.White;
-        private Color _surroundColor = Color.Gray;
-        private Color _borderColor = Color.Black;
+        private Color _centerColor = Color.FromArgb(100, 255, 0, 0);
+        private Color _surroundColor = Color.FromArgb(100, 0, 255, 255);
+        private Color _borderColor = Color.FromArgb(255, 255, 0, 0);
         private DashStyle _borderStyle = DashStyle.Solid;
-        private int _borderWidth = 1;
+        private int _borderWidth = 3;
         private bool _useGradient = false;
-
-        // ── Constructor ───────────────────────────────────────────────────────
+        private GraphicsPath _outline = new GraphicsPath();
 
         public ShapeControl()
         {
-            // Enable custom painting and reduce flicker
-            SetStyle(ControlStyles.AllPaintingInWmPaint |
-                     ControlStyles.UserPaint |
-                     ControlStyles.DoubleBuffer |
-                     ControlStyles.ResizeRedraw, true);
-
-            BackColor = Color.Transparent;
+            SetStyle(ControlStyles.UserPaint |
+                     ControlStyles.SupportsTransparentBackColor |
+                     ControlStyles.AllPaintingInWmPaint |
+                     ControlStyles.DoubleBuffer, true);
+            BackColor = Color.FromArgb(0, 255, 255, 255);
             Size = new Size(24, 24);
         }
 
-        // ── Public Properties ─────────────────────────────────────────────────
-
-        /// <summary>
-        /// The shape to draw — Rectangle or Ellipse.
-        /// </summary>
         public ShapeType Shape
         {
             get => _shape;
-            set { _shape = value; Invalidate(); }
+            set { _shape = value; OnResize(null); }
         }
 
-        /// <summary>
-        /// The center (inner) color of the shape, used in gradient mode.
-        /// In flat mode this is the fill color.
-        /// </summary>
         public Color CenterColor
         {
             get => _centerColor;
-            set { _centerColor = value; Invalidate(); }
+            set { _centerColor = value; Refresh(); }
         }
 
-        /// <summary>
-        /// The surround (outer) color used in gradient mode.
-        /// </summary>
         public Color SurroundColor
         {
             get => _surroundColor;
-            set { _surroundColor = value; Invalidate(); }
+            set { _surroundColor = value; Refresh(); }
         }
 
-        /// <summary>
-        /// The color of the shape's border.
-        /// </summary>
         public Color BorderColor
         {
             get => _borderColor;
-            set { _borderColor = value; Invalidate(); }
+            set { _borderColor = value; Refresh(); }
         }
 
-        /// <summary>
-        /// The dash style of the border (Solid, Dash, Dot, etc).
-        /// </summary>
         public new DashStyle BorderStyle
         {
             get => _borderStyle;
-            set { _borderStyle = value; Invalidate(); }
+            set { _borderStyle = value; Refresh(); }
         }
 
-        /// <summary>
-        /// The width in pixels of the border.
-        /// </summary>
         public int BorderWidth
         {
             get => _borderWidth;
-            set { _borderWidth = Math.Max(0, value); Invalidate(); }
+            set { _borderWidth = Math.Max(0, value); Refresh(); }
         }
 
-        /// <summary>
-        /// When true, fills the shape with a radial gradient from CenterColor to SurroundColor.
-        /// When false, fills with CenterColor as a flat fill.
-        /// </summary>
         public bool UseGradient
         {
             get => _useGradient;
-            set { _useGradient = value; Invalidate(); }
+            set { _useGradient = value; Refresh(); }
         }
-
-        // ── Painting ──────────────────────────────────────────────────────────
-
-        protected override void OnPaint(PaintEventArgs e)
-        {
-            base.OnPaint(e);
-
-            Graphics g = e.Graphics;
-            g.SmoothingMode = SmoothingMode.AntiAlias;
-
-            // Inset the draw rect slightly so the border isn't clipped
-            int inset = Math.Max(1, _borderWidth / 2);
-            Rectangle rect = new Rectangle(
-                inset, inset,
-                Width - inset * 2 - 1,
-                Height - inset * 2 - 1);
-
-            if (rect.Width <= 0 || rect.Height <= 0)
-                return;
-
-            // ── Fill ──────────────────────────────────────────────────────────
-            if (_useGradient)
-            {
-                // Radial-style gradient: use a path gradient brush
-                using GraphicsPath path = MakePath(rect);
-                using PathGradientBrush brush = new PathGradientBrush(path)
-                {
-                    CenterColor = _centerColor,
-                    SurroundColors = new[] { _surroundColor }
-                };
-                FillShape(g, brush, rect);
-            }
-            else
-            {
-                using SolidBrush brush = new SolidBrush(_centerColor);
-                FillShape(g, brush, rect);
-            }
-
-            // ── Border ────────────────────────────────────────────────────────
-            if (_borderWidth > 0)
-            {
-                using Pen pen = new Pen(_borderColor, _borderWidth)
-                {
-                    DashStyle = _borderStyle
-                };
-                DrawShape(g, pen, rect);
-            }
-        }
-
-        // ── Helpers ───────────────────────────────────────────────────────────
-
-        private void FillShape(Graphics g, Brush brush, Rectangle rect)
-        {
-            if (_shape == ShapeType.Ellipse)
-                g.FillEllipse(brush, rect);
-            else
-                g.FillRectangle(brush, rect);
-        }
-
-        private void DrawShape(Graphics g, Pen pen, Rectangle rect)
-        {
-            if (_shape == ShapeType.Ellipse)
-                g.DrawEllipse(pen, rect);
-            else
-                g.DrawRectangle(pen, rect);
-        }
-
-        private GraphicsPath MakePath(Rectangle rect)
-        {
-            GraphicsPath path = new GraphicsPath();
-            if (_shape == ShapeType.Ellipse)
-                path.AddEllipse(rect);
-            else
-                path.AddRectangle(rect);
-            return path;
-        }
-
-        // ── Overrides ─────────────────────────────────────────────────────────
 
         protected override void OnResize(EventArgs e)
         {
-            base.OnResize(e);
-            Invalidate();
+            if (Width >= 0 && Height > 0)
+            {
+                _outline = new GraphicsPath();
+                if (_shape == ShapeType.Ellipse)
+                    _outline.AddEllipse(0, 0, Width, Height);
+                else
+                    _outline.AddRectangle(new Rectangle(0, 0, Width, Height));
+
+                this.Region = new Region(_outline);
+                Refresh();
+                if (e != null) base.OnResize(e);
+            }
+        }
+
+        protected override void OnPaint(PaintEventArgs pe)
+        {
+            if (_useGradient)
+            {
+                PathGradientBrush brush = new PathGradientBrush(_outline);
+                brush.CenterColor = _centerColor;
+                brush.SurroundColors = new Color[] { _surroundColor };
+                pe.Graphics.FillPath(brush, _outline);
+                brush.Dispose();
+            }
+
+            if (_borderWidth > 0)
+            {
+                Pen pen = new Pen(_borderColor, _borderWidth * 2);
+                pen.DashStyle = _borderStyle;
+                pe.Graphics.SmoothingMode = SmoothingMode.HighQuality;
+                pe.Graphics.DrawPath(pen, _outline);
+                pen.Dispose();
+            }
+
+            StringFormat sf = new StringFormat
+            {
+                Alignment = StringAlignment.Center,
+                LineAlignment = StringAlignment.Center
+            };
+            pe.Graphics.DrawString(Text, Font, new SolidBrush(ForeColor),
+                new Rectangle(0, 0, Width, Height), sf);
+
+            base.OnPaint(pe);
         }
     }
 }

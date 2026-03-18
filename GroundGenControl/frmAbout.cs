@@ -94,7 +94,7 @@ namespace GroundGenControl
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(240, 23);
             this.label3.TabIndex = 20;
-            this.label3.Text = "Copyright © 2017-2025 Weather Modificaiton,  Inc.";
+            this.label3.Text = "Copyright \u00A9 2017-2025 Weather Modification, Inc.";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // frmAbout

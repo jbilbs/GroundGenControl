@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Serialization;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace SkyWave
 {
@@ -59,7 +61,21 @@ namespace SkyWave
             HttpResponseMessage response = _client.GetAsync(url).GetAwaiter().GetResult();
             response.EnsureSuccessStatusCode();
             string json = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            return DeserializeJson<T>(json);
+
+            // Try to unwrap outer envelope (e.g. {"GetReturnMessages_JResult":{...}})
+            // If it's a plain value (string, array) just deserialize directly
+            try
+            {
+                var outer = JsonConvert.DeserializeObject<Dictionary<string, JToken>>(json);
+                if (outer != null && outer.Count == 1)
+                {
+                    string inner = outer.Values.First().ToString();
+                    return JsonConvert.DeserializeObject<T>(inner);
+                }
+            }
+            catch { }
+
+            return JsonConvert.DeserializeObject<T>(json);
         }
 
         // ── Helper: POST and deserialize ──────────────────────────────────────
@@ -72,31 +88,39 @@ namespace SkyWave
             HttpResponseMessage response = _client.PostAsync(url, content).GetAwaiter().GetResult();
             response.EnsureSuccessStatusCode();
             string json = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
-            return DeserializeJson<TResult>(json);
+            // Unwrap the outer envelope (e.g. {"SubmitForwardMessages_JResult":{...}})
+            var outer = JsonConvert.DeserializeObject<Dictionary<string, Newtonsoft.Json.Linq.JToken>>(json);
+            string inner = outer.Values.First().ToString();
+            return JsonConvert.DeserializeObject<TResult>(inner);
         }
 
         // ── Helper: JSON serialization ────────────────────────────────────────
 
         private static T DeserializeJson<T>(string json)
         {
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(T));
-            using MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(json));
-            return (T)serializer.ReadObject(ms);
+            return JsonConvert.DeserializeObject<T>(json);
         }
 
         private static string SerializeJson(object obj)
         {
-            DataContractJsonSerializer serializer = new DataContractJsonSerializer(obj.GetType());
-            using MemoryStream ms = new MemoryStream();
-            serializer.WriteObject(ms, obj);
-            return Encoding.UTF8.GetString(ms.ToArray());
+            return JsonConvert.SerializeObject(obj);
         }
 
         // ── API methods ───────────────────────────────────────────────────────
 
         public SubmitMessagesResult SubmitForwardMessages_J(String accessID, String password, ForwardMessage[] messages)
         {
-            var body = new { access_id = accessID, password = password, messages = messages };
+            var body = new
+            {
+                accessID = accessID,
+                password = password,
+                messages = messages.Select(m => new
+                {
+                    DestinationID = m.DestinationID,
+                    UserMessageID = m.UserMessageID,
+                    RawPayload = m.RawPayload != null ? m.RawPayload.Select(b => (int)b).ToArray() : null
+                }).ToArray()
+            };
             return Post<SubmitMessagesResult>("submit_messages.json/", body);
         }
 

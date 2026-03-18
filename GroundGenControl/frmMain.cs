@@ -467,9 +467,9 @@ namespace GroundGenControl
 
 
 			lvStatus.Items[StatusListIndexes.SEED_STATUS].SubItems[DATA_COLULMN].Text			= status.seedingStatusString;
-			//	Seed timer set in timer function
-			lvStatus.Items[StatusListIndexes.FLAME_TEMP].SubItems[DATA_COLULMN].Text			= String.Format("{0:0.0} �F",status.flameTemp);
-			lvStatus.Items[StatusListIndexes.FLOW_METER].SubItems[DATA_COLULMN].Text			= String.Format("{0:0.00} GPH",status.flowMeter);
+            //	Seed timer set in timer function
+            lvStatus.Items[StatusListIndexes.FLAME_TEMP].SubItems[DATA_COLULMN].Text            = String.Format("{0:0.0} \u00B0F", status.flameTemp);
+            lvStatus.Items[StatusListIndexes.FLOW_METER].SubItems[DATA_COLULMN].Text			= String.Format("{0:0.00} GPH",status.flowMeter);
 			lvStatus.Items[StatusListIndexes.PRESSURE].SubItems[DATA_COLULMN].Text				= String.Format("{0:0.0} PSI",status.pressurePSI);
 			lvStatus.Items[StatusListIndexes.PROPANE_RELAY].SubItems[DATA_COLULMN].Text			= status.burnerStateString;
 			lvStatus.Items[StatusListIndexes.SOLUTION_RELAY].SubItems[DATA_COLULMN].Text		= status.solutionStateString;
@@ -673,7 +673,7 @@ namespace GroundGenControl
 
 				lblFlowMeter.Text = String.Format(" GPH",status.flowMeter);
 				lblPressure.Text = String.Format(" PSI",status.pressurePSI);
-				lblFlameTemp.Text = String.Format(" �F",status.flameTemp);
+				lblFlameTemp.Text = String.Format(" \u00B0F", status.flameTemp);
 
 				pictBurning.Visible = false;
 				lblNotBurning.Visible = true;
@@ -700,7 +700,7 @@ namespace GroundGenControl
 			//	Pressure
 			lblPressure.Text = String.Format("{0:0.0} PSI",status.pressurePSI);
 			//	Flame temperature
-			lblFlameTemp.Text = String.Format("{0:0.0} �F",status.flameTemp);
+			lblFlameTemp.Text = String.Format("{0:0.0} \u00B0F", status.flameTemp);
 
 
 			//	Set burning state
@@ -1056,7 +1056,7 @@ namespace GroundGenControl
             this.lblFlameTemp.Name = "lblFlameTemp";
             this.lblFlameTemp.Size = new System.Drawing.Size(48, 16);
             this.lblFlameTemp.TabIndex = 52;
-            this.lblFlameTemp.Text = "-.- �F";
+            this.lblFlameTemp.Text = "-.- \u00B0F";
             this.lblFlameTemp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // shapePurgeOn
@@ -2178,6 +2178,7 @@ namespace GroundGenControl
             this.Controls.Add(this.txtCommandRemaining);
             this.Controls.Add(this.btnResetSeed);
             this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.mainMenu1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.lblCurrentTime);
@@ -2538,7 +2539,7 @@ namespace GroundGenControl
 				updateErrorLog();
 
 
-				MessageBox.Show("Unable to send status message to site " + ((Site) cbConnectTo.SelectedItem).name + "...",
+                MessageBox.Show("Unable to send status message to site " + ((Site) cbConnectTo.SelectedItem).name + "...",
 								"Communications Error",
 								MessageBoxButtons.OK,
 								MessageBoxIcon.Error );
